@@ -1,18 +1,132 @@
-<section *ngIf="event" class="event-detail">
-  <h1>{{ event.title }}</h1>
-  <p>{{ event.description }}</p>
-  <p>
-    <strong>When:</strong> {{ event.startDatetime | date : "fullDate" }}
-    {{ event.startDatetime | date : "shortTime" }}
-  </p>
-  <p><strong>Where:</strong> {{ event.locationAddress }}</p>
+<div class="event-detail-container" *ngIf="event">
+  <!-- Hero Section with Image Placeholder -->
+  <div class="event-hero">
+    <div class="event-hero-overlay">
+      <div class="event-badge">
+        <span class="badge-icon">🎉</span>
+        <span class="badge-text">Community Event</span>
+      </div>
+    </div>
+  </div>
 
-  <button (click)="register()" [disabled]="loading">
-    {{ loading ? "Registering..." : "Register" }}
-  </button>
-  <div *ngIf="message" class="message">{{ message }}</div>
-</section>
+  <!-- Main Content -->
+  <div class="event-content">
+    <!-- Title Section -->
+    <div class="event-header">
+      <h1 class="event-title">{{ event.title }}</h1>
+      <div class="event-meta">
+        <span class="meta-tag">
+          <span class="tag-icon">👥</span>
+          {{ event.maxParticipants }} spots available
+        </span>
+        <span class="meta-tag status-tag">
+          <span class="tag-icon">✨</span>
+          {{ event.status }}
+        </span>
+      </div>
+    </div>
 
-<section *ngIf="!event">
-  <p>Event not found.</p>
-</section>
+    <!-- Description Card -->
+    <div class="info-card description-card">
+      <h2 class="card-title">
+        <span class="title-icon">📝</span>
+        About This Event
+      </h2>
+      <p class="event-description">{{ event.description }}</p>
+    </div>
+
+    <!-- Event Details Grid -->
+    <div class="details-grid">
+      <!-- Date & Time Card -->
+      <div class="info-card detail-card">
+        <div class="card-icon-wrapper">
+          <span class="card-icon">📅</span>
+        </div>
+        <div class="card-content">
+          <h3 class="detail-label">When</h3>
+          <p class="detail-value">
+            {{ event.startDatetime | date : "EEEE, MMMM d, yyyy" }}
+          </p>
+          <p class="detail-time">
+            {{ event.startDatetime | date : "h:mm a" }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Location Card -->
+      <div class="info-card detail-card">
+        <div class="card-icon-wrapper">
+          <span class="card-icon">📍</span>
+        </div>
+        <div class="card-content">
+          <h3 class="detail-label">Where</h3>
+          <p class="detail-value">{{ event.locationAddress }}</p>
+          <a href="#" class="location-link">View on map →</a>
+        </div>
+      </div>
+
+      <!-- Organizer Card -->
+      <div class="info-card detail-card">
+        <div class="card-icon-wrapper">
+          <span class="card-icon">👤</span>
+        </div>
+        <div class="card-content">
+          <h3 class="detail-label">Organized by</h3>
+          <p class="detail-value">Community Team</p>
+          <p class="detail-subtext">Verified organizer</p>
+        </div>
+      </div>
+
+      <!-- Category Card -->
+      <div class="info-card detail-card">
+        <div class="card-icon-wrapper">
+          <span class="card-icon">🏷️</span>
+        </div>
+        <div class="card-content">
+          <h3 class="detail-label">Category</h3>
+          <p class="detail-value">{{ event.eventType || "Community" }}</p>
+          <p class="detail-subtext">{{ event.visibility || "Public" }} event</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration Section -->
+    <div class="registration-section">
+      <div class="registration-card">
+        <div class="registration-info">
+          <h3 class="registration-title">Ready to join?</h3>
+          <p class="registration-text">
+            Secure your spot now! Limited seats available.
+          </p>
+        </div>
+        <button
+          class="register-btn"
+          (click)="register()"
+          [disabled]="loading"
+          [class.loading]="loading"
+        >
+          <span class="btn-icon" *ngIf="!loading">✨</span>
+          <span class="btn-text">{{
+            loading ? "Registering..." : "Register Now"
+          }}</span>
+          <span class="btn-arrow" *ngIf="!loading">→</span>
+        </button>
+      </div>
+
+      <div *ngIf="message" class="success-message">
+        <span class="success-icon">🎊</span>
+        <span class="success-text">{{ message }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Event Not Found -->
+<div class="event-not-found" *ngIf="!event">
+  <div class="not-found-content">
+    <span class="not-found-icon">🔍</span>
+    <h2>Event Not Found</h2>
+    <p>We couldn't find the event you're looking for.</p>
+    <a routerLink="/events" class="back-link"> ← Back to Events </a>
+  </div>
+</div>

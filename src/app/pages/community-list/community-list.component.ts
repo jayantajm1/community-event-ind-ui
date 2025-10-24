@@ -59,4 +59,22 @@ export class CommunityListComponent implements OnInit {
   createCommunity(): void {
     this.router.navigate(['/communities/create']);
   }
+
+  getCommunityIcon(index: number): string {
+    const icons = [
+      '🏠',
+      '🎨',
+      '💼',
+      '🎮',
+      '📚',
+      '🎵',
+      '⚽',
+      '🍳',
+      '🌱',
+      '💻',
+      '🎬',
+      '🏋️',
+    ];
+    return icons[index % icons.length];
+  }
 }

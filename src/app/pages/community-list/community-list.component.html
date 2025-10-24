@@ -1,55 +1,118 @@
 <div class="community-list-container">
-  <div class="page-header">
-    <div>
-      <h1>Communities</h1>
-      <p>Discover and join amazing communities</p>
+  <!-- Hero Header Section -->
+  <div class="hero-header">
+    <div class="hero-content">
+      <div class="header-text">
+        <div class="title-wrapper">
+          <span class="title-icon">🌐</span>
+          <h1 class="page-title">Communities</h1>
+        </div>
+        <p class="page-subtitle">Discover and join amazing communities</p>
+      </div>
+      <button class="create-btn" (click)="createCommunity()">
+        <span class="btn-icon">✨</span>
+        <span class="btn-text">Create Community</span>
+        <span class="btn-arrow">→</span>
+      </button>
     </div>
-    <button class="btn btn-primary" (click)="createCommunity()">
-      Create Community
-    </button>
   </div>
 
+  <!-- Search Section -->
   <div class="search-section">
-    <div class="search-box">
+    <div class="search-wrapper">
+      <div class="search-icon">🔍</div>
       <input
         type="text"
+        class="search-input"
         [(ngModel)]="searchQuery"
         (input)="onSearch()"
         placeholder="Search communities by name, description, or location..."
       />
+      <div class="search-decoration"></div>
+    </div>
+    <div class="search-stats" *ngIf="!loading">
+      <span class="stats-text">
+        Found <strong>{{ filteredCommunities.length }}</strong>
+        {{ filteredCommunities.length === 1 ? "community" : "communities" }}
+      </span>
     </div>
   </div>
 
-  <div class="loading" *ngIf="loading">
-    <p>Loading communities...</p>
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="loading">
+    <div class="spinner-wrapper">
+      <div class="spinner"></div>
+      <p class="loading-text">Discovering communities...</p>
+    </div>
   </div>
 
-  <div class="communities-grid" *ngIf="!loading">
+  <!-- Communities Grid -->
+  <div
+    class="communities-grid"
+    *ngIf="!loading && filteredCommunities.length > 0"
+  >
     <div
       class="community-card"
-      *ngFor="let community of filteredCommunities"
+      *ngFor="let community of filteredCommunities; let i = index"
       (click)="viewCommunity(community.id)"
+      [style.animation-delay]="i * 0.1 + 's'"
     >
-      <div class="community-header">
-        <h3>{{ community.name }}</h3>
-        <span class="badge badge-primary">{{
-          community.visibility || "public"
-        }}</span>
-      </div>
-      <p class="community-description">
-        {{ community.description || "No description available" }}
-      </p>
-      <div class="community-footer">
-        <span class="location-tag">
-          📍 {{ community.city
-          }}{{ community.region ? ", " + community.region : "" }}
+      <!-- Card Header with Icon -->
+      <div class="card-header">
+        <div class="community-icon">
+          <span class="icon-emoji">{{ getCommunityIcon(i) }}</span>
+        </div>
+        <span
+          class="visibility-badge"
+          [class.public]="community.visibility === 'public'"
+        >
+          <span class="badge-icon">{{
+            community.visibility === "public" ? "🌍" : "🔒"
+          }}</span>
+          {{ community.visibility || "public" }}
         </span>
       </div>
+
+      <!-- Card Content -->
+      <div class="card-content">
+        <h3 class="community-name">{{ community.name }}</h3>
+        <p class="community-description">
+          {{ community.description || "No description available" }}
+        </p>
+      </div>
+
+      <!-- Card Footer -->
+      <div class="card-footer">
+        <div class="location-info">
+          <span class="location-icon">📍</span>
+          <span class="location-text">
+            {{ community.city
+            }}{{ community.region ? ", " + community.region : "" }}
+          </span>
+        </div>
+        <div class="join-indicator">
+          <span class="join-text">View Details</span>
+          <span class="join-arrow">→</span>
+        </div>
+      </div>
+
+      <!-- Hover Effect Overlay -->
+      <div class="card-overlay"></div>
     </div>
   </div>
 
+  <!-- Empty State -->
   <div class="empty-state" *ngIf="!loading && filteredCommunities.length === 0">
-    <h3>No communities found</h3>
-    <p>Try adjusting your search or create a new community.</p>
+    <div class="empty-content">
+      <div class="empty-icon">🔍</div>
+      <h3 class="empty-title">No communities found</h3>
+      <p class="empty-text">
+        Try adjusting your search or be the first to create a new community!
+      </p>
+      <button class="create-btn-secondary" (click)="createCommunity()">
+        <span class="btn-icon">✨</span>
+        <span>Create New Community</span>
+      </button>
+    </div>
   </div>
 </div>

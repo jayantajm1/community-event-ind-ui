@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { User } from '../models/user.model';
-import { MOCK_USERS } from '../mock/mock-data';
+import { MOCK_USERS, USER_EVENTS, USER_COMMUNITIES } from '../mock/mock-data';
 
 export interface UpdateProfileRequest {
   fullName?: string;
@@ -19,7 +20,7 @@ export class UserService {
 
   getUserById(id: string): Observable<User> {
     const user = MOCK_USERS.find((u) => u.id === id);
-    return of(user || MOCK_USERS[0]);
+    return of(user || MOCK_USERS[0]).pipe(delay(300));
   }
 
   updateProfile(id: string, request: UpdateProfileRequest): Observable<User> {
@@ -29,38 +30,34 @@ export class UserService {
         ...user,
         ...request,
       };
-      return of(updatedUser);
+
+      // Update in local storage if this is the current user
+      const currentUserJson = localStorage.getItem('current_user');
+      if (currentUserJson) {
+        try {
+          const currentUser = JSON.parse(currentUserJson);
+          if (currentUser.id === id) {
+            localStorage.setItem('current_user', JSON.stringify(updatedUser));
+          }
+        } catch (e) {
+          // Ignore parse errors
+        }
+      }
+
+      return of(updatedUser).pipe(delay(500));
     }
-    return of(MOCK_USERS[0]);
+    return of(MOCK_USERS[0]).pipe(delay(500));
   }
 
   getUserEvents(userId: string): Observable<any[]> {
-    // Mock user events
-    return of([
-      {
-        id: '1',
-        title: 'Tech Meetup 2024',
-        date: '2024-02-15',
-        status: 'registered',
-      },
-      {
-        id: '2',
-        title: 'Community Cleanup Drive',
-        date: '2024-02-20',
-        status: 'attended',
-      },
-    ]);
+    // Get user events from mock data
+    const events = USER_EVENTS[userId] || [];
+    return of(events).pipe(delay(300));
   }
 
   getUserCommunities(userId: string): Observable<any[]> {
-    // Mock user communities
-    return of([
-      {
-        id: '1',
-        name: 'Tech Enthusiasts',
-        role: 'member',
-        joinedDate: '2024-01-10',
-      },
-    ]);
+    // Get user communities from mock data
+    const communities = USER_COMMUNITIES[userId] || [];
+    return of(communities).pipe(delay(300));
   }
 }

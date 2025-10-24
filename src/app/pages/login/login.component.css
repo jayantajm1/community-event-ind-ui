@@ -30,6 +30,104 @@
   font-size: var(--font-size-base);
 }
 
+/* Test Credentials Section */
+.test-credentials {
+  background: linear-gradient(135deg, #fffbf5 0%, #fff5e6 100%);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-xl);
+  border: 2px solid var(--border-color);
+  overflow: hidden;
+}
+
+.credentials-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  user-select: none;
+}
+
+.credentials-header:hover {
+  background: rgba(255, 154, 86, 0.1);
+}
+
+.credentials-icon {
+  font-size: var(--font-size-lg);
+}
+
+.credentials-title {
+  flex: 1;
+  font-weight: 700;
+  color: #2d2d2d;
+  font-size: var(--font-size-base);
+}
+
+.toggle-icon {
+  color: var(--primary-color);
+  font-size: var(--font-size-sm);
+  transition: transform var(--transition-base);
+}
+
+.credentials-list {
+  border-top: 2px solid var(--border-color);
+  background: white;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.credential-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.credential-item:last-child {
+  border-bottom: none;
+}
+
+.credential-item:hover {
+  background: var(--primary-lighter);
+  transform: translateX(4px);
+}
+
+.cred-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.cred-email {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: #2d2d2d;
+}
+
+.cred-role {
+  font-size: var(--font-size-xs);
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.cred-action {
+  color: var(--primary-color);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.credential-item:hover .cred-action {
+  opacity: 1;
+}
+
 .form-group {
   margin-bottom: var(--spacing-lg);
 }
@@ -70,5 +168,13 @@
 @media (max-width: 480px) {
   .auth-card {
     padding: var(--spacing-xl);
+  }
+
+  .credentials-header {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .credential-item {
+    padding: var(--spacing-sm) var(--spacing-md);
   }
 }

@@ -3,6 +3,28 @@
     <h1>Login</h1>
     <p class="subtitle">Welcome back to Community Events</p>
 
+    <!-- Test Credentials Info -->
+    <div class="test-credentials">
+      <div class="credentials-header" (click)="toggleCredentials()">
+        <span class="credentials-icon">🔑</span>
+        <span class="credentials-title">Test Credentials</span>
+        <span class="toggle-icon">{{ showCredentials ? "▼" : "▶" }}</span>
+      </div>
+      <div class="credentials-list" *ngIf="showCredentials">
+        <div
+          class="credential-item"
+          *ngFor="let cred of testCredentials"
+          (click)="useCredential(cred)"
+        >
+          <div class="cred-info">
+            <span class="cred-email">{{ cred.email }}</span>
+            <span class="cred-role">{{ cred.role }}</span>
+          </div>
+          <span class="cred-action">Use →</span>
+        </div>
+      </div>
+    </div>
+
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="email">Email</label>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, of, BehaviorSubject, throwError } from 'rxjs';
+import { tap, delay } from 'rxjs/operators';
 import { User } from '../models/user.model';
+import { MOCK_USERS, TEST_CREDENTIALS } from '../mock/mock-data';
 
 export interface LoginRequest {
   email: string;
@@ -27,20 +28,19 @@ export class AuthService {
   public currentUser$ = this.currentUserSubject.asObservable();
   private tokenKey = 'auth_token';
   private refreshTokenKey = 'refresh_token';
+  private userKey = 'current_user';
 
   constructor() {
     // Check if user is already logged in
     const token = this.getToken();
-    if (token) {
-      // In a real app, validate token and load user data
-      const mockUser: User = {
-        id: 'u1',
-        fullName: 'Demo User',
-        email: 'demo@example.com',
-        username: 'demo',
-        role: 'member',
-      };
-      this.currentUserSubject.next(mockUser);
+    const savedUser = localStorage.getItem(this.userKey);
+    if (token && savedUser) {
+      try {
+        const user = JSON.parse(savedUser);
+        this.currentUserSubject.next(user);
+      } catch (e) {
+        this.clearTokens();
+      }
     }
   }
 
@@ -59,31 +59,53 @@ export class AuthService {
     };
 
     return of(mockResponse).pipe(
+      delay(500), // Simulate network delay
       tap((response) => {
         this.setTokens(response.token, response.refreshToken);
-        this.currentUserSubject.next(response.user);
+        this.setCurrentUser(response.user);
       })
     );
   }
 
   login(request: LoginRequest): Observable<AuthResponse> {
-    // Mock login - replace with real HTTP call
+    // Validate credentials against test data
+    const validCredential = TEST_CREDENTIALS.find(
+      (cred) =>
+        cred.email === request.email && cred.password === request.password
+    );
+
+    if (!validCredential) {
+      return throwError(() => ({
+        error: { message: 'Invalid email or password' },
+      })).pipe(delay(500));
+    }
+
+    // Find the user
+    let user = MOCK_USERS.find((u) => u.email === request.email);
+
+    // If not found in MOCK_USERS, create a demo user
+    if (!user) {
+      user = {
+        id: 'demo',
+        fullName: 'Demo User',
+        email: request.email,
+        username: request.email.split('@')[0],
+        role: 'member',
+        bio: 'Welcome! This is a demo account.',
+      };
+    }
+
     const mockResponse: AuthResponse = {
       token: 'mock_jwt_token_' + Date.now(),
       refreshToken: 'mock_refresh_token_' + Date.now(),
-      user: {
-        id: 'u1',
-        fullName: 'Demo User',
-        email: request.email,
-        username: 'demo',
-        role: 'member',
-      },
+      user: user,
     };
 
     return of(mockResponse).pipe(
+      delay(500), // Simulate network delay
       tap((response) => {
         this.setTokens(response.token, response.refreshToken);
-        this.currentUserSubject.next(response.user);
+        this.setCurrentUser(response.user);
       })
     );
   }
@@ -134,8 +156,14 @@ export class AuthService {
     localStorage.setItem(this.refreshTokenKey, refreshToken);
   }
 
+  private setCurrentUser(user: User): void {
+    localStorage.setItem(this.userKey, JSON.stringify(user));
+    this.currentUserSubject.next(user);
+  }
+
   private clearTokens(): void {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.refreshTokenKey);
+    localStorage.removeItem(this.userKey);
   }
 }

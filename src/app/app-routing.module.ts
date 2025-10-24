@@ -14,7 +14,8 @@ import { EventEditComponent } from './pages/event-edit/event-edit.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '/events', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: ProfileComponent },
@@ -26,7 +27,7 @@ const routes: Routes = [
   { path: 'communities/create', component: CommunityCreateComponent },
   { path: 'communities/:id', component: CommunityDetailComponent },
   { path: 'admin/dashboard', component: AdminDashboardComponent },
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: '/events' },
 ];
 
 @NgModule({

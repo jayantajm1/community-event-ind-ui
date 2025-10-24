@@ -1,0 +1,17 @@
+<section class="events-list">
+  <h1>Events</h1>
+  <div class="search">
+    <input [(ngModel)]="query" placeholder="Search events" />
+    <button (click)="load()">Search</button>
+  </div>
+
+  <div class="cards">
+    <article *ngFor="let e of events" class="card">
+      <h3>
+        <a [routerLink]="['/events', e.id]">{{ e.title }}</a>
+      </h3>
+      <p>{{ e.description }}</p>
+      <small>{{ e.startDatetime | date : "short" }}</small>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,18 @@
+<section *ngIf="event" class="event-detail">
+  <h1>{{ event.title }}</h1>
+  <p>{{ event.description }}</p>
+  <p>
+    <strong>When:</strong> {{ event.startDatetime | date : "fullDate" }}
+    {{ event.startDatetime | date : "shortTime" }}
+  </p>
+  <p><strong>Where:</strong> {{ event.locationAddress }}</p>
+
+  <button (click)="register()" [disabled]="loading">
+    {{ loading ? "Registering..." : "Register" }}
+  </button>
+  <div *ngIf="message" class="message">{{ message }}</div>
+</section>
+
+<section *ngIf="!event">
+  <p>Event not found.</p>
+</section>

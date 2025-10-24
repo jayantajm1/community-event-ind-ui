@@ -1,0 +1,4 @@
+.home-hero{padding:24px;background:#fff;border-radius:6px;margin:16px 0;text-align:center}
+.home-hero .btn{display:inline-block;margin-top:12px;padding:8px 12px;background:#1976d2;color:#fff;border-radius:4px;text-decoration:none}
+.upcoming .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+.card{padding:12px;border:1px solid #eee;border-radius:6px;background:#fff}

@@ -1,0 +1,20 @@
+<section class="home-hero">
+  <h1>Discover community events near you</h1>
+  <p>
+    Find, join, and participate in local events organized by your community.
+  </p>
+  <a routerLink="/events" class="btn">Browse events</a>
+</section>
+
+<section class="upcoming">
+  <h2>Upcoming events</h2>
+  <div class="cards">
+    <article *ngFor="let e of events" class="card">
+      <h3>
+        <a [routerLink]="['/events', e.id]">{{ e.title }}</a>
+      </h3>
+      <p>{{ e.description }}</p>
+      <small>{{ e.startDatetime | date : "medium" }}</small>
+    </article>
+  </div>
+</section>

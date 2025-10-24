@@ -299,13 +299,13 @@
 .section-title {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #2d2d2d;
+  color: rgb(181, 23, 23);
   margin: 0 0 var(--spacing-md);
 }
 
 .section-description {
   font-size: var(--font-size-lg);
-  color: #666;
+  color: saddlebrown;
   max-width: 600px;
   margin: 0 auto;
 }

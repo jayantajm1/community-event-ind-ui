@@ -21,12 +21,24 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+# Ignore all workspace settings and state (they vary per developer/machine)
+.vscode/
+
+# Editor history (if you use an extension that stores history locally)
+.history/
+
+# Environment files (local secrets/config)
+.env
+.env.*.local
+
+# Logs
+*.log
+
+# Local caches and build artifacts
+.cache/
+.parcel-cache/
+.turbo/
+.next/
 
 # Miscellaneous
 /.angular/cache

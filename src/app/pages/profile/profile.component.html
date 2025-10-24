@@ -1,173 +1,309 @@
 <div class="profile-container">
-  <div class="alert alert-success" *ngIf="success">
-    {{ success }}
+  <!-- Alert Messages -->
+  <div class="alert-success" *ngIf="success">
+    <span class="alert-icon">✅</span>
+    <span>{{ success }}</span>
   </div>
 
-  <div class="alert alert-error" *ngIf="error">
-    {{ error }}
+  <div class="alert-error" *ngIf="error">
+    <span class="alert-icon">⚠️</span>
+    <span>{{ error }}</span>
   </div>
 
-  <div class="profile-header">
-    <div class="profile-avatar">
-      <div class="avatar-placeholder">
-        {{ user?.fullName?.charAt(0) }}
-      </div>
-    </div>
-    <div class="profile-info">
-      <h1>{{ user?.fullName }}</h1>
-      <p class="text-secondary">{{ user?.email }}</p>
-      <span class="badge badge-primary">{{ user?.role }}</span>
-    </div>
-    <div class="profile-actions">
-      <button
-        class="btn btn-primary"
-        (click)="toggleEditMode()"
-        *ngIf="!editMode"
-      >
-        Edit Profile
-      </button>
-    </div>
-  </div>
-
-  <div class="profile-content">
-    <div class="profile-main">
-      <div class="card" *ngIf="!editMode">
-        <h2>About</h2>
-        <div class="info-grid">
-          <div class="info-item">
-            <span class="info-label">Full Name</span>
-            <span class="info-value">{{ user?.fullName }}</span>
+  <!-- Profile Header Hero -->
+  <div class="profile-hero">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <div class="profile-avatar-section">
+        <div class="avatar-wrapper">
+          <div class="avatar-placeholder">
+            {{ user?.fullName?.charAt(0) }}
           </div>
-          <div class="info-item">
-            <span class="info-label">Email</span>
-            <span class="info-value">{{ user?.email }}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Username</span>
-            <span class="info-value">{{ user?.username || "Not set" }}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Role</span>
-            <span class="info-value">{{ user?.role }}</span>
-          </div>
-          <div class="info-item full-width" *ngIf="bio">
-            <span class="info-label">Bio</span>
-            <span class="info-value">{{ bio }}</span>
+          <div class="avatar-badge">
+            <span class="badge-icon">{{ getRoleIcon(user?.role) }}</span>
           </div>
         </div>
       </div>
-
-      <div class="card" *ngIf="editMode">
-        <h2>Edit Profile</h2>
-        <form (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input
-              type="text"
-              id="fullName"
-              [(ngModel)]="fullName"
-              name="fullName"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              [(ngModel)]="email"
-              name="email"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              [(ngModel)]="username"
-              name="username"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="bio">Bio</label>
-            <textarea
-              id="bio"
-              [(ngModel)]="bio"
-              name="bio"
-              rows="4"
-              placeholder="Tell us about yourself..."
-            ></textarea>
-          </div>
-
-          <div class="form-actions">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              (click)="toggleEditMode()"
-            >
-              Cancel
-            </button>
-            <button type="submit" class="btn btn-primary" [disabled]="loading">
-              {{ loading ? "Saving..." : "Save Changes" }}
-            </button>
-          </div>
-        </form>
+      <div class="profile-info-section">
+        <h1 class="profile-name">{{ user?.fullName }}</h1>
+        <p class="profile-email">
+          <span class="email-icon">📧</span>
+          {{ user?.email }}
+        </p>
+        <div class="profile-meta">
+          <span class="role-badge" [attr.data-role]="user?.role">
+            <span class="role-icon">{{ getRoleIcon(user?.role) }}</span>
+            <span class="role-text">{{ user?.role }}</span>
+          </span>
+          <span class="username-display" *ngIf="user?.username">
+            <span class="username-icon">@</span>
+            <span>{{ user?.username }}</span>
+          </span>
+        </div>
       </div>
+      <div class="profile-actions-section">
+        <button
+          class="btn-edit-profile"
+          (click)="toggleEditMode()"
+          *ngIf="!editMode"
+        >
+          <span class="btn-icon">✏️</span>
+          <span>Edit Profile</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
-      <div class="card">
-        <h2>Registered Events</h2>
-        <div class="event-list" *ngIf="userEvents.length > 0">
-          <div class="event-item" *ngFor="let event of userEvents">
-            <div>
-              <h3>{{ event.title }}</h3>
-              <p class="text-secondary">{{ event.date }}</p>
+  <!-- Profile Content Grid -->
+  <div class="profile-content-grid">
+    <!-- Main Content -->
+    <div class="main-column">
+      <!-- About Section (View Mode) -->
+      <div class="content-card about-card" *ngIf="!editMode">
+        <div class="card-header">
+          <span class="card-icon">👤</span>
+          <h2 class="card-title">About</h2>
+        </div>
+        <div class="card-body">
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-icon">👤</span>
+              <div class="info-content">
+                <span class="info-label">Full Name</span>
+                <span class="info-value">{{ user?.fullName }}</span>
+              </div>
             </div>
-            <span
-              class="badge"
-              [ngClass]="{
-                'badge-success': event.status === 'attended',
-                'badge-primary': event.status === 'registered'
-              }"
-            >
-              {{ event.status }}
-            </span>
+            <div class="info-item">
+              <span class="info-icon">📧</span>
+              <div class="info-content">
+                <span class="info-label">Email</span>
+                <span class="info-value">{{ user?.email }}</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">@</span>
+              <div class="info-content">
+                <span class="info-label">Username</span>
+                <span class="info-value">{{
+                  user?.username || "Not set"
+                }}</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">{{ getRoleIcon(user?.role) }}</span>
+              <div class="info-content">
+                <span class="info-label">Role</span>
+                <span class="info-value">{{ user?.role }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="bio-section" *ngIf="bio">
+            <div class="bio-header">
+              <span class="bio-icon">📝</span>
+              <span class="bio-label">Bio</span>
+            </div>
+            <p class="bio-text">{{ bio }}</p>
           </div>
         </div>
-        <p class="text-secondary" *ngIf="userEvents.length === 0">
-          No events registered yet.
-        </p>
+      </div>
+
+      <!-- Edit Profile Form -->
+      <div class="content-card edit-card" *ngIf="editMode">
+        <div class="card-header">
+          <span class="card-icon">✏️</span>
+          <h2 class="card-title">Edit Profile</h2>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="fullName">
+                <span class="label-icon">👤</span>
+                <span>Full Name</span>
+              </label>
+              <input
+                type="text"
+                id="fullName"
+                [(ngModel)]="fullName"
+                name="fullName"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">
+                <span class="label-icon">📧</span>
+                <span>Email</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                [(ngModel)]="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="username">
+                <span class="label-icon">@</span>
+                <span>Username</span>
+              </label>
+              <input
+                type="text"
+                id="username"
+                [(ngModel)]="username"
+                name="username"
+                placeholder="Choose a username"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="bio">
+                <span class="label-icon">📝</span>
+                <span>Bio</span>
+              </label>
+              <textarea
+                id="bio"
+                [(ngModel)]="bio"
+                name="bio"
+                rows="4"
+                placeholder="Tell us about yourself..."
+              ></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn-cancel"
+                (click)="toggleEditMode()"
+              >
+                <span class="btn-icon">✖️</span>
+                <span>Cancel</span>
+              </button>
+              <button type="submit" class="btn-save" [disabled]="loading">
+                <span class="btn-icon" *ngIf="!loading">💾</span>
+                <span class="spinner" *ngIf="loading"></span>
+                <span>{{ loading ? "Saving..." : "Save Changes" }}</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Registered Events -->
+      <div class="content-card events-card">
+        <div class="card-header">
+          <span class="card-icon">🎉</span>
+          <h2 class="card-title">Registered Events</h2>
+          <span class="card-count">{{ userEvents.length }}</span>
+        </div>
+        <div class="card-body">
+          <div class="event-grid" *ngIf="userEvents.length > 0">
+            <div class="event-card" *ngFor="let event of userEvents">
+              <div class="event-header">
+                <span class="event-icon">{{
+                  getEventStatusIcon(event.status)
+                }}</span>
+                <div
+                  class="event-status-badge"
+                  [attr.data-status]="event.status"
+                >
+                  {{ event.status }}
+                </div>
+              </div>
+              <h3 class="event-title">{{ event.title }}</h3>
+              <div class="event-meta">
+                <span class="event-date">
+                  <span class="meta-icon">📅</span>
+                  {{ event.date | date : "MMM d, y" }}
+                </span>
+                <span class="event-role" *ngIf="event.role">
+                  <span class="meta-icon">👤</span>
+                  {{ event.role }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="empty-state" *ngIf="userEvents.length === 0">
+            <span class="empty-icon">📭</span>
+            <p class="empty-text">No events registered yet.</p>
+            <a routerLink="/events" class="empty-action">Browse Events</a>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="profile-sidebar">
-      <div class="card">
-        <h2>Communities</h2>
-        <div class="community-list" *ngIf="userCommunities.length > 0">
-          <div class="community-item" *ngFor="let community of userCommunities">
-            <h3>{{ community.name }}</h3>
-            <p class="text-secondary">{{ community.role }}</p>
-            <p class="text-sm">Joined: {{ community.joinedDate }}</p>
+    <!-- Sidebar -->
+    <div class="sidebar-column">
+      <!-- Communities Card -->
+      <div class="content-card communities-card">
+        <div class="card-header">
+          <span class="card-icon">🏘️</span>
+          <h2 class="card-title">Communities</h2>
+          <span class="card-count">{{ userCommunities.length }}</span>
+        </div>
+        <div class="card-body">
+          <div class="community-list" *ngIf="userCommunities.length > 0">
+            <div
+              class="community-card"
+              *ngFor="let community of userCommunities"
+            >
+              <div class="community-header">
+                <span class="community-icon">🏘️</span>
+                <div
+                  class="community-role-badge"
+                  [attr.data-role]="community.role"
+                >
+                  {{ community.role }}
+                </div>
+              </div>
+              <h3 class="community-name">{{ community.name }}</h3>
+              <div class="community-meta">
+                <span class="community-joined">
+                  <span class="meta-icon">📅</span>
+                  Joined {{ community.joinedDate | date : "MMM y" }}
+                </span>
+                <span class="community-members" *ngIf="community.memberCount">
+                  <span class="meta-icon">👥</span>
+                  {{ community.memberCount }} members
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="empty-state" *ngIf="userCommunities.length === 0">
+            <span class="empty-icon">🏘️</span>
+            <p class="empty-text">Not a member of any community yet.</p>
+            <a routerLink="/communities" class="empty-action"
+              >Explore Communities</a
+            >
           </div>
         </div>
-        <p class="text-secondary" *ngIf="userCommunities.length === 0">
-          Not a member of any community yet.
-        </p>
       </div>
 
-      <div class="card">
-        <h2>Statistics</h2>
-        <div class="stats-grid">
-          <div class="stat-item">
-            <span class="stat-value">{{ userEvents.length }}</span>
-            <span class="stat-label">Events</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">{{ userCommunities.length }}</span>
-            <span class="stat-label">Communities</span>
+      <!-- Statistics Card -->
+      <div class="content-card stats-card">
+        <div class="card-header">
+          <span class="card-icon">📊</span>
+          <h2 class="card-title">Statistics</h2>
+        </div>
+        <div class="card-body">
+          <div class="stats-grid">
+            <div class="stat-box">
+              <span class="stat-icon">🎉</span>
+              <div class="stat-content">
+                <span class="stat-value">{{ userEvents.length }}</span>
+                <span class="stat-label">Events</span>
+              </div>
+            </div>
+            <div class="stat-box">
+              <span class="stat-icon">🏘️</span>
+              <div class="stat-content">
+                <span class="stat-value">{{ userCommunities.length }}</span>
+                <span class="stat-label">Communities</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

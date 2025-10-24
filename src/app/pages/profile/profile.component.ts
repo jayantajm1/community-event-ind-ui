@@ -86,4 +86,23 @@ export class ProfileComponent implements OnInit {
         },
       });
   }
+
+  getRoleIcon(role?: string): string {
+    const icons: { [key: string]: string } = {
+      host: '👑',
+      member: '👤',
+      admin: '⚡',
+      moderator: '🛡️',
+    };
+    return icons[role || 'member'] || '👤';
+  }
+
+  getEventStatusIcon(status: string): string {
+    const icons: { [key: string]: string } = {
+      registered: '🎫',
+      attended: '✅',
+      cancelled: '❌',
+    };
+    return icons[status] || '🎉';
+  }
 }

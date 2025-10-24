@@ -1,0 +1,84 @@
+<div class="create-container">
+  <div class="create-card">
+    <div class="create-header">
+      <h1>Create Community</h1>
+      <p>Start a new community and bring people together</p>
+    </div>
+
+    <div class="alert alert-error" *ngIf="error">
+      {{ error }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Community Name *</label>
+        <input
+          type="text"
+          id="name"
+          [(ngModel)]="name"
+          name="name"
+          placeholder="Enter community name"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description *</label>
+        <textarea
+          id="description"
+          [(ngModel)]="description"
+          name="description"
+          rows="4"
+          placeholder="Describe your community, its purpose, and what members can expect..."
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="city">City *</label>
+          <input
+            type="text"
+            id="city"
+            [(ngModel)]="city"
+            name="city"
+            placeholder="City name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="region">Region/State</label>
+          <input
+            type="text"
+            id="region"
+            [(ngModel)]="region"
+            name="region"
+            placeholder="Region or state (optional)"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="visibility">Visibility *</label>
+        <select id="visibility" [(ngModel)]="visibility" name="visibility">
+          <option value="public">Public - Anyone can join</option>
+          <option value="private">Private - Requires approval</option>
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          routerLink="/communities"
+        >
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="loading">
+          {{ loading ? "Creating..." : "Create Community" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

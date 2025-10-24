@@ -1,0 +1,117 @@
+<div class="create-container">
+  <div class="create-card">
+    <div class="create-header">
+      <h1>Create Event</h1>
+      <p>Organize a new event for your community</p>
+    </div>
+
+    <div class="alert alert-error" *ngIf="error">
+      {{ error }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Event Title *</label>
+        <input
+          type="text"
+          id="title"
+          [(ngModel)]="title"
+          name="title"
+          placeholder="Enter event title"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description *</label>
+        <textarea
+          id="description"
+          [(ngModel)]="description"
+          name="description"
+          rows="4"
+          placeholder="Describe your event, agenda, and what attendees can expect..."
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="startDatetime">Start Date & Time *</label>
+          <input
+            type="datetime-local"
+            id="startDatetime"
+            [(ngModel)]="startDatetime"
+            name="startDatetime"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="endDatetime">End Date & Time *</label>
+          <input
+            type="datetime-local"
+            id="endDatetime"
+            [(ngModel)]="endDatetime"
+            name="endDatetime"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="locationAddress">Location *</label>
+        <input
+          type="text"
+          id="locationAddress"
+          [(ngModel)]="locationAddress"
+          name="locationAddress"
+          placeholder="Event venue address"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="maxParticipants">Max Participants</label>
+          <input
+            type="number"
+            id="maxParticipants"
+            [(ngModel)]="maxParticipants"
+            name="maxParticipants"
+            placeholder="Optional"
+            min="1"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="eventType">Event Type</label>
+          <input
+            type="text"
+            id="eventType"
+            [(ngModel)]="eventType"
+            name="eventType"
+            placeholder="e.g. Meetup, Workshop, Conference"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="visibility">Visibility *</label>
+        <select id="visibility" [(ngModel)]="visibility" name="visibility">
+          <option value="public">Public - Anyone can see and join</option>
+          <option value="community">Community - Only community members</option>
+          <option value="private">Private - Invite only</option>
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" routerLink="/events">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="loading">
+          {{ loading ? "Creating..." : "Create Event" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

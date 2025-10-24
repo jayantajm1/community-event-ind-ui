@@ -1,0 +1,105 @@
+<div class="community-detail-container" *ngIf="!loading && community">
+  <div class="alert alert-success" *ngIf="success">
+    {{ success }}
+  </div>
+
+  <div class="alert alert-error" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <div class="community-header">
+    <div class="community-info">
+      <h1>{{ community.name }}</h1>
+      <p class="community-location">
+        📍 {{ community.city
+        }}{{ community.region ? ", " + community.region : "" }}
+      </p>
+      <span class="badge badge-primary">{{
+        community.visibility || "public"
+      }}</span>
+    </div>
+    <div class="community-actions">
+      <button
+        class="btn btn-primary"
+        *ngIf="!isMember"
+        (click)="joinCommunity()"
+        [disabled]="joining"
+      >
+        {{ joining ? "Joining..." : "Join Community" }}
+      </button>
+      <button
+        class="btn btn-secondary"
+        *ngIf="isMember"
+        (click)="leaveCommunity()"
+        [disabled]="joining"
+      >
+        {{ joining ? "Leaving..." : "Leave Community" }}
+      </button>
+    </div>
+  </div>
+
+  <div class="community-content">
+    <div class="community-main">
+      <div class="card">
+        <h2>About</h2>
+        <p>
+          {{
+            community.description ||
+              "No description available for this community."
+          }}
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Upcoming Events</h2>
+        <div class="event-list" *ngIf="events.length > 0">
+          <div class="event-item" *ngFor="let event of events">
+            <div>
+              <h3>{{ event.title }}</h3>
+              <p class="text-secondary">{{ event.date }}</p>
+            </div>
+            <span class="attendee-count">{{ event.attendees }} attendees</span>
+          </div>
+        </div>
+        <p class="text-secondary" *ngIf="events.length === 0">
+          No upcoming events scheduled.
+        </p>
+      </div>
+    </div>
+
+    <div class="community-sidebar">
+      <div class="card">
+        <h2>Members ({{ members.length }})</h2>
+        <div class="member-list">
+          <div class="member-item" *ngFor="let member of members">
+            <div class="member-avatar">
+              {{ member.fullName.charAt(0) }}
+            </div>
+            <div class="member-info">
+              <h4>{{ member.fullName }}</h4>
+              <p class="text-secondary">{{ member.role }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Community Stats</h2>
+        <div class="stats">
+          <div class="stat-item">
+            <span class="stat-value">{{ members.length }}</span>
+            <span class="stat-label">Members</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">{{ events.length }}</span>
+            <span class="stat-label">Events</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loading" *ngIf="loading">
+  <p>Loading community details...</p>
+</div>

@@ -1,0 +1,163 @@
+<div class="admin-container">
+  <h1>Admin Dashboard</h1>
+
+  <div class="alert alert-success" *ngIf="success">
+    {{ success }}
+  </div>
+
+  <div class="alert alert-error" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid" *ngIf="stats">
+    <div class="stat-card">
+      <h3>Total Users</h3>
+      <p class="stat-value">{{ stats.totalUsers }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Total Events</h3>
+      <p class="stat-value">{{ stats.totalEvents }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Communities</h3>
+      <p class="stat-value">{{ stats.totalCommunities }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Pending Reports</h3>
+      <p class="stat-value text-warning">{{ stats.pendingReports }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Active Events</h3>
+      <p class="stat-value">{{ stats.activeEvents }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Banned Users</h3>
+      <p class="stat-value text-error">{{ stats.bannedUsers }}</p>
+    </div>
+  </div>
+
+  <!-- Event Reports -->
+  <div class="card">
+    <h2>Event Reports</h2>
+    <div class="table-container">
+      <table *ngIf="eventReports.length > 0">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Reported By</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of eventReports">
+            <td>{{ report.eventTitle }}</td>
+            <td>{{ report.reportedBy }}</td>
+            <td>{{ report.reason }}</td>
+            <td>
+              <span
+                class="badge"
+                [ngClass]="{
+                  'badge-warning': report.status === 'pending',
+                  'badge-success': report.status === 'resolved',
+                  'badge-secondary': report.status === 'rejected'
+                }"
+              >
+                {{ report.status }}
+              </span>
+            </td>
+            <td>{{ report.createdAt | date : "short" }}</td>
+            <td>
+              <div class="action-buttons" *ngIf="report.status === 'pending'">
+                <button
+                  class="btn btn-success btn-sm"
+                  (click)="resolveEventReport(report.id)"
+                >
+                  Resolve
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  (click)="rejectEventReport(report.id)"
+                >
+                  Reject
+                </button>
+              </div>
+              <span *ngIf="report.status !== 'pending'">-</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-secondary" *ngIf="eventReports.length === 0">
+        No event reports found.
+      </p>
+    </div>
+  </div>
+
+  <!-- User Reports -->
+  <div class="card">
+    <h2>User Reports</h2>
+    <div class="table-container">
+      <table *ngIf="userReports.length > 0">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Reported By</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of userReports">
+            <td>{{ report.userName }}</td>
+            <td>{{ report.reportedBy }}</td>
+            <td>{{ report.reason }}</td>
+            <td>
+              <span
+                class="badge"
+                [ngClass]="{
+                  'badge-warning': report.status === 'pending',
+                  'badge-success': report.status === 'resolved',
+                  'badge-secondary': report.status === 'rejected'
+                }"
+              >
+                {{ report.status }}
+              </span>
+            </td>
+            <td>{{ report.createdAt | date : "short" }}</td>
+            <td>
+              <div class="action-buttons" *ngIf="report.status === 'pending'">
+                <button
+                  class="btn btn-success btn-sm"
+                  (click)="resolveUserReport(report.id)"
+                >
+                  Resolve
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm"
+                  (click)="rejectUserReport(report.id)"
+                >
+                  Reject
+                </button>
+                <button
+                  class="btn btn-error btn-sm"
+                  (click)="banUser(report.userId)"
+                >
+                  Ban User
+                </button>
+              </div>
+              <span *ngIf="report.status !== 'pending'">-</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-secondary" *ngIf="userReports.length === 0">
+        No user reports found.
+      </p>
+    </div>
+  </div>
+</div>

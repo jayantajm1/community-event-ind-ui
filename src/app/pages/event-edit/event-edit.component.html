@@ -1,0 +1,148 @@
+<div class="edit-container" *ngIf="!loading && event">
+  <div class="edit-card">
+    <div class="edit-header">
+      <div>
+        <h1>Edit Event</h1>
+        <p>Update event details</p>
+      </div>
+      <div class="status-actions">
+        <span
+          class="badge"
+          [ngClass]="{
+            'badge-secondary': event.status === 'draft',
+            'badge-success': event.status === 'published',
+            'badge-error': event.status === 'closed'
+          }"
+        >
+          {{ event.status }}
+        </span>
+        <button
+          class="btn btn-success btn-sm"
+          *ngIf="event.status === 'draft'"
+          (click)="publishEvent()"
+        >
+          Publish
+        </button>
+        <button
+          class="btn btn-secondary btn-sm"
+          *ngIf="event.status === 'published'"
+          (click)="closeEvent()"
+        >
+          Close Event
+        </button>
+      </div>
+    </div>
+
+    <div class="alert alert-success" *ngIf="success">
+      {{ success }}
+    </div>
+
+    <div class="alert alert-error" *ngIf="error">
+      {{ error }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Event Title *</label>
+        <input
+          type="text"
+          id="title"
+          [(ngModel)]="title"
+          name="title"
+          placeholder="Enter event title"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description *</label>
+        <textarea
+          id="description"
+          [(ngModel)]="description"
+          name="description"
+          rows="4"
+          placeholder="Describe your event..."
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="startDatetime">Start Date & Time *</label>
+          <input
+            type="datetime-local"
+            id="startDatetime"
+            [(ngModel)]="startDatetime"
+            name="startDatetime"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="endDatetime">End Date & Time *</label>
+          <input
+            type="datetime-local"
+            id="endDatetime"
+            [(ngModel)]="endDatetime"
+            name="endDatetime"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="locationAddress">Location *</label>
+        <input
+          type="text"
+          id="locationAddress"
+          [(ngModel)]="locationAddress"
+          name="locationAddress"
+          placeholder="Event venue address"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="maxParticipants">Max Participants</label>
+          <input
+            type="number"
+            id="maxParticipants"
+            [(ngModel)]="maxParticipants"
+            name="maxParticipants"
+            placeholder="Optional"
+            min="1"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="eventType">Event Type</label>
+          <input
+            type="text"
+            id="eventType"
+            [(ngModel)]="eventType"
+            name="eventType"
+            placeholder="e.g. Meetup, Workshop"
+          />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          [routerLink]="['/events', eventId]"
+        >
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="loading">
+          {{ loading ? "Saving..." : "Save Changes" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="loading" *ngIf="loading">
+  <p>Loading event...</p>
+</div>

@@ -1,0 +1,55 @@
+<div class="community-list-container">
+  <div class="page-header">
+    <div>
+      <h1>Communities</h1>
+      <p>Discover and join amazing communities</p>
+    </div>
+    <button class="btn btn-primary" (click)="createCommunity()">
+      Create Community
+    </button>
+  </div>
+
+  <div class="search-section">
+    <div class="search-box">
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (input)="onSearch()"
+        placeholder="Search communities by name, description, or location..."
+      />
+    </div>
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    <p>Loading communities...</p>
+  </div>
+
+  <div class="communities-grid" *ngIf="!loading">
+    <div
+      class="community-card"
+      *ngFor="let community of filteredCommunities"
+      (click)="viewCommunity(community.id)"
+    >
+      <div class="community-header">
+        <h3>{{ community.name }}</h3>
+        <span class="badge badge-primary">{{
+          community.visibility || "public"
+        }}</span>
+      </div>
+      <p class="community-description">
+        {{ community.description || "No description available" }}
+      </p>
+      <div class="community-footer">
+        <span class="location-tag">
+          📍 {{ community.city
+          }}{{ community.region ? ", " + community.region : "" }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!loading && filteredCommunities.length === 0">
+    <h3>No communities found</h3>
+    <p>Try adjusting your search or create a new community.</p>
+  </div>
+</div>

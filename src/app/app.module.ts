@@ -13,6 +13,16 @@ import { EventListComponent } from './pages/event-list/event-list.component';
 import { EventDetailComponent } from './pages/event-detail/event-detail.component';
 import { NgxSpinnerShimComponent } from './components/ngx-spinner/ngx-spinner.component';
 import { PToastShimComponent } from './components/p-toast/p-toast.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { CommunityListComponent } from './pages/community-list/community-list.component';
+import { CommunityDetailComponent } from './pages/community-detail/community-detail.component';
+import { CommunityCreateComponent } from './pages/community-create/community-create.component';
+import { EventCreateComponent } from './pages/event-create/event-create.component';
+import { EventEditComponent } from './pages/event-edit/event-edit.component';
+import { CommentListComponent } from './components/comment-list/comment-list.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +34,16 @@ import { PToastShimComponent } from './components/p-toast/p-toast.component';
     EventDetailComponent,
     NgxSpinnerShimComponent,
     PToastShimComponent,
+    LoginComponent,
+    SignupComponent,
+    ProfileComponent,
+    CommunityListComponent,
+    CommunityDetailComponent,
+    CommunityCreateComponent,
+    EventCreateComponent,
+    EventEditComponent,
+    CommentListComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,

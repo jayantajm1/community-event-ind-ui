@@ -14,4 +14,22 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.eventService.list().subscribe((e) => (this.events = e));
   }
+
+  getEventIcon(category: string): string {
+    const icons: { [key: string]: string } = {
+      Music: '🎵',
+      Sports: '🏃',
+      Technology: '💻',
+      Arts: '🎭',
+      Food: '🍔',
+      Education: '📚',
+      Business: '💼',
+      Health: '🏥',
+      Social: '🎉',
+      Entertainment: '🎪',
+      Workshop: '🛠️',
+      Conference: '🎤',
+    };
+    return icons[category] || '🎉';
+  }
 }

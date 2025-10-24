@@ -1,22 +1,206 @@
 <div class="home-container">
-  <section class="home-hero">
-    <h1>Discover community events near you</h1>
-    <p>
-      Find, join, and participate in local events organized by your community.
-    </p>
-    <a routerLink="/events" class="btn">Browse events</a>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="hero-badge">🌟 Connect & Celebrate</span>
+        <h1 class="hero-title">
+          Discover Amazing
+          <span class="gradient-text">Community Events</span>
+          Near You
+        </h1>
+        <p class="hero-description">
+          Join thousands of people connecting through local events and
+          communities. Find your next adventure, make new friends, and be part
+          of something special.
+        </p>
+        <div class="hero-buttons">
+          <a routerLink="/events" class="btn-primary">
+            <span class="btn-icon">🎉</span>
+            <span>Explore Events</span>
+          </a>
+          <a routerLink="/communities" class="btn-secondary">
+            <span class="btn-icon">🏘️</span>
+            <span>Browse Communities</span>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-icon">🎊</span>
+            <span class="stat-value">500+</span>
+            <span class="stat-label">Events</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">👥</span>
+            <span class="stat-value">10K+</span>
+            <span class="stat-label">Members</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">🏘️</span>
+            <span class="stat-value">100+</span>
+            <span class="stat-label">Communities</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-card card-1">
+          <span class="visual-icon">🎭</span>
+          <span class="visual-text">Arts & Culture</span>
+        </div>
+        <div class="visual-card card-2">
+          <span class="visual-icon">🏃</span>
+          <span class="visual-text">Sports & Fitness</span>
+        </div>
+        <div class="visual-card card-3">
+          <span class="visual-icon">💻</span>
+          <span class="visual-text">Tech & Innovation</span>
+        </div>
+        <div class="visual-card card-4">
+          <span class="visual-icon">🎵</span>
+          <span class="visual-text">Music & Entertainment</span>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="upcoming">
-    <h2>Upcoming events</h2>
-    <div class="cards">
-      <article *ngFor="let e of events" class="card">
-        <h3>
-          <a [routerLink]="['/events', e.id]">{{ e.title }}</a>
-        </h3>
-        <p>{{ e.description }}</p>
-        <small>{{ e.startDatetime | date : "medium" }}</small>
-      </article>
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="section-header">
+      <span class="section-badge">✨ Why Choose Us</span>
+      <h2 class="section-title">Everything You Need to Connect</h2>
+      <p class="section-description">
+        A comprehensive platform designed to bring communities together
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3 class="feature-title">Discover Events</h3>
+        <p class="feature-description">
+          Find events tailored to your interests with smart recommendations and
+          powerful search filters.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">👋</div>
+        <h3 class="feature-title">Join Communities</h3>
+        <p class="feature-description">
+          Connect with like-minded people, share experiences, and build lasting
+          friendships.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3 class="feature-title">Create Events</h3>
+        <p class="feature-description">
+          Organize your own events with ease using our intuitive tools and reach
+          the right audience.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3 class="feature-title">Smart Matching</h3>
+        <p class="feature-description">
+          Get personalized event suggestions based on your interests, location,
+          and preferences.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3 class="feature-title">Stay Updated</h3>
+        <p class="feature-description">
+          Never miss out with real-time notifications about events and community
+          activities.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3 class="feature-title">Safe & Secure</h3>
+        <p class="feature-description">
+          Your privacy and security are our top priorities with verified events
+          and communities.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upcoming Events Section -->
+  <section class="upcoming-section">
+    <div class="section-header">
+      <span class="section-badge">🎊 What's Happening</span>
+      <h2 class="section-title">Upcoming Events</h2>
+      <p class="section-description">
+        Don't miss out on these exciting events happening soon
+      </p>
+    </div>
+
+    <div class="events-grid" *ngIf="events.length > 0">
+      <div class="event-card" *ngFor="let event of events.slice(0, 6)">
+        <div class="event-icon">{{ getEventIcon(event.title) }}</div>
+        <div class="event-content">
+          <h3 class="event-title">
+            <a [routerLink]="['/events', event.id]">{{ event.title }}</a>
+          </h3>
+          <p class="event-description">{{ event.description }}</p>
+          <div class="event-meta">
+            <span class="event-date">
+              <span class="meta-icon">📅</span>
+              {{ event.startDatetime | date : "MMM d, y" }}
+            </span>
+            <span class="event-time">
+              <span class="meta-icon">🕐</span>
+              {{ event.startDatetime | date : "h:mm a" }}
+            </span>
+            <span class="event-location">
+              <span class="meta-icon">📍</span>
+              Online Event
+            </span>
+          </div>
+        </div>
+        <a [routerLink]="['/events', event.id]" class="event-action">
+          View Details →
+        </a>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="events.length === 0">
+      <div class="empty-icon">📭</div>
+      <p class="empty-text">No upcoming events yet. Check back soon!</p>
+    </div>
+
+    <div class="section-footer" *ngIf="events.length > 0">
+      <a routerLink="/events" class="view-all-link">
+        View All Events
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-background"></div>
+    <div class="cta-content">
+      <span class="cta-icon">🚀</span>
+      <h2 class="cta-title">Ready to Get Started?</h2>
+      <p class="cta-description">
+        Join our community today and start discovering amazing events near you
+      </p>
+      <div class="cta-buttons">
+        <a routerLink="/signup" class="btn-cta-primary">
+          <span class="btn-icon">✨</span>
+          <span>Sign Up Free</span>
+        </a>
+        <a routerLink="/about-us" class="btn-cta-secondary">
+          <span>Learn More</span>
+        </a>
+      </div>
     </div>
   </section>
 </div>

@@ -23,7 +23,7 @@ import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.co
 import { TermsOfServiceComponent } from './pages/terms-of-service/terms-of-service.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/events', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

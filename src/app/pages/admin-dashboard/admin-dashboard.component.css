@@ -75,13 +75,15 @@
 .alert-success {
   background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
   border: 2px solid #28a745;
-  color: #155724;
+  color: #0d3d1a;
+  font-weight: 600;
 }
 
 .alert-error {
   background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
   border: 2px solid #dc3545;
-  color: #721c24;
+  color: #4d0e13;
+  font-weight: 600;
 }
 
 .alert-icon {
@@ -171,8 +173,8 @@
 .stat-info h3 {
   margin: 0 0 8px 0;
   font-size: 14px;
-  color: #5d5d5d;
-  font-weight: 600;
+  color: #1a1a1a;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -316,8 +318,9 @@ tbody tr:hover {
 td {
   padding: 20px 16px;
   border-bottom: 1px solid #f0f0f0;
-  color: #2d2d2d;
+  color: #1a1a1a;
   font-size: 14px;
+  font-weight: 500;
 }
 
 tbody tr:last-child td {
@@ -349,6 +352,8 @@ tbody tr:last-child td:last-child {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #1a1a1a;
+  font-weight: 600;
 }
 
 .reason-cell {
@@ -356,7 +361,8 @@ tbody tr:last-child td:last-child {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #5d5d5d;
+  color: #2d2d2d;
+  font-weight: 500;
 }
 
 /* Badges */
@@ -468,15 +474,16 @@ tbody tr:last-child td:last-child {
 
 .empty-text {
   font-size: 20px;
-  color: #2d2d2d;
-  font-weight: 600;
+  color: #1a1a1a;
+  font-weight: 700;
   margin: 0 0 8px 0;
 }
 
 .empty-subtext {
   font-size: 16px;
-  color: #5d5d5d;
+  color: #2d2d2d;
   margin: 0;
+  font-weight: 500;
 }
 
 /* Animations */

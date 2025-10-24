@@ -22,7 +22,7 @@ body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
   line-height: 1.6;
-  color: var(--text-primary);
+  color: #2d2d2d;
   background-color: var(--background-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -33,9 +33,9 @@ body {
    =========================== */
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 var(--spacing-md) 0;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
-  color: var(--text-primary);
+  color: #1a1a1a;
 }
 
 h1 { font-size: var(--font-size-4xl); }
@@ -47,6 +47,17 @@ h6 { font-size: var(--font-size-base); }
 
 p {
   margin: 0 0 var(--spacing-md) 0;
+  color: #2d2d2d;
+  font-weight: 500;
+}
+
+label {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+span {
+  color: #2d2d2d;
 }
 
 a {
@@ -177,11 +188,19 @@ select {
   padding: var(--spacing-sm) var(--spacing-md);
   font-size: var(--font-size-base);
   line-height: 1.5;
-  color: var(--text-primary);
+  color: #1a1a1a;
+  font-weight: 500;
   background-color: var(--surface-color);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #4d4d4d;
+  font-weight: 500;
+  opacity: 1;
 }
 
 input:focus,
@@ -216,17 +235,53 @@ textarea {
 
 .card h3 {
   margin-top: 0;
-  color: var(--text-primary);
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.card h2 {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.card h4,
+.card h5,
+.card h6 {
+  color: #1a1a1a;
+  font-weight: 600;
 }
 
 .card p {
-  color: var(--text-secondary);
+  color: #2d2d2d;
   margin-bottom: var(--spacing-sm);
+  font-weight: 500;
 }
 
 .card small {
-  color: var(--text-disabled);
+  color: #3d3d3d;
   font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.card label {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.card span {
+  color: #2d2d2d;
+  font-weight: 500;
+}
+
+.card td,
+.card th {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.card .text-secondary {
+  color: #2d2d2d !important;
+  font-weight: 500;
 }
 
 .cards {
@@ -284,28 +339,29 @@ textarea {
   margin-bottom: var(--spacing-md);
   border: 1px solid transparent;
   border-radius: var(--radius-md);
+  font-weight: 600;
 }
 
 .alert-success {
-  color: #155724;
+  color: #0d3d1a;
   background-color: var(--success-light);
   border-color: #c3e6cb;
 }
 
 .alert-warning {
-  color: #856404;
+  color: #5a3d00;
   background-color: var(--warning-light);
   border-color: #ffeeba;
 }
 
 .alert-error {
-  color: #721c24;
+  color: #4d0e13;
   background-color: var(--error-light);
   border-color: #f5c6cb;
 }
 
 .alert-info {
-  color: #0c5460;
+  color: #052d35;
   background-color: var(--info-light);
   border-color: #bee5eb;
 }

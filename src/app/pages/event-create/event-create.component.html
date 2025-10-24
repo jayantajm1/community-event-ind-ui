@@ -1,17 +1,25 @@
 <div class="create-container">
-  <div class="create-card">
-    <div class="create-header">
-      <h1>Create Event</h1>
-      <p>Organize a new event for your community</p>
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-icon">🎨</div>
+    <h1 class="hero-title">Create Event</h1>
+    <p class="hero-subtitle">Organize a new event for your community</p>
+  </div>
+
+  <!-- Form Card -->
+  <div class="form-card">
+    <div class="alert-error" *ngIf="error">
+      <span class="alert-icon">⚠️</span>
+      <span>{{ error }}</span>
     </div>
 
-    <div class="alert alert-error" *ngIf="error">
-      {{ error }}
-    </div>
-
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" class="event-form">
+      <!-- Event Title -->
       <div class="form-group">
-        <label for="title">Event Title *</label>
+        <label for="title">
+          <span class="label-icon">📝</span>
+          <span class="label-text">Event Title *</span>
+        </label>
         <input
           type="text"
           id="title"
@@ -19,47 +27,66 @@
           name="title"
           placeholder="Enter event title"
           required
+          class="form-input"
         />
       </div>
 
+      <!-- Description -->
       <div class="form-group">
-        <label for="description">Description *</label>
+        <label for="description">
+          <span class="label-icon">📄</span>
+          <span class="label-text">Description *</span>
+        </label>
         <textarea
           id="description"
           [(ngModel)]="description"
           name="description"
-          rows="4"
+          rows="5"
           placeholder="Describe your event, agenda, and what attendees can expect..."
           required
+          class="form-textarea"
         ></textarea>
       </div>
 
+      <!-- Date & Time Row -->
       <div class="form-row">
         <div class="form-group">
-          <label for="startDatetime">Start Date & Time *</label>
+          <label for="startDatetime">
+            <span class="label-icon">📅</span>
+            <span class="label-text">Start Date & Time *</span>
+          </label>
           <input
             type="datetime-local"
             id="startDatetime"
             [(ngModel)]="startDatetime"
             name="startDatetime"
             required
+            class="form-input"
           />
         </div>
 
         <div class="form-group">
-          <label for="endDatetime">End Date & Time *</label>
+          <label for="endDatetime">
+            <span class="label-icon">🏁</span>
+            <span class="label-text">End Date & Time *</span>
+          </label>
           <input
             type="datetime-local"
             id="endDatetime"
             [(ngModel)]="endDatetime"
             name="endDatetime"
             required
+            class="form-input"
           />
         </div>
       </div>
 
+      <!-- Location -->
       <div class="form-group">
-        <label for="locationAddress">Location *</label>
+        <label for="locationAddress">
+          <span class="label-icon">📍</span>
+          <span class="label-text">Location *</span>
+        </label>
         <input
           type="text"
           id="locationAddress"
@@ -67,12 +94,17 @@
           name="locationAddress"
           placeholder="Event venue address"
           required
+          class="form-input"
         />
       </div>
 
+      <!-- Max Participants & Event Type Row -->
       <div class="form-row">
         <div class="form-group">
-          <label for="maxParticipants">Max Participants</label>
+          <label for="maxParticipants">
+            <span class="label-icon">👥</span>
+            <span class="label-text">Max Participants</span>
+          </label>
           <input
             type="number"
             id="maxParticipants"
@@ -80,36 +112,65 @@
             name="maxParticipants"
             placeholder="Optional"
             min="1"
+            class="form-input"
           />
         </div>
 
         <div class="form-group">
-          <label for="eventType">Event Type</label>
+          <label for="eventType">
+            <span class="label-icon">🎯</span>
+            <span class="label-text">Event Type</span>
+          </label>
           <input
             type="text"
             id="eventType"
             [(ngModel)]="eventType"
             name="eventType"
             placeholder="e.g. Meetup, Workshop, Conference"
+            class="form-input"
           />
         </div>
       </div>
 
+      <!-- Visibility -->
       <div class="form-group">
-        <label for="visibility">Visibility *</label>
-        <select id="visibility" [(ngModel)]="visibility" name="visibility">
-          <option value="public">Public - Anyone can see and join</option>
-          <option value="community">Community - Only community members</option>
-          <option value="private">Private - Invite only</option>
-        </select>
+        <label for="visibility">
+          <span class="label-icon">👁️</span>
+          <span class="label-text">Visibility *</span>
+        </label>
+        <div class="select-wrapper">
+          <select
+            id="visibility"
+            [(ngModel)]="visibility"
+            name="visibility"
+            class="form-select"
+          >
+            <option value="public">🌍 Public - Anyone can see and join</option>
+            <option value="community">
+              👥 Community - Only community members
+            </option>
+            <option value="private">🔒 Private - Invite only</option>
+          </select>
+          <span class="select-arrow">▼</span>
+        </div>
       </div>
 
+      <!-- Form Actions -->
       <div class="form-actions">
-        <button type="button" class="btn btn-secondary" routerLink="/events">
-          Cancel
+        <button type="button" class="btn-cancel" routerLink="/events">
+          <span class="btn-icon">❌</span>
+          <span>Cancel</span>
         </button>
-        <button type="submit" class="btn btn-primary" [disabled]="loading">
-          {{ loading ? "Creating..." : "Create Event" }}
+        <button type="submit" class="btn-submit" [disabled]="loading">
+          <span class="btn-content" *ngIf="!loading">
+            <span class="btn-icon">✨</span>
+            <span>Create Event</span>
+            <span class="btn-arrow">→</span>
+          </span>
+          <span class="btn-loading" *ngIf="loading">
+            <span class="spinner"></span>
+            Creating...
+          </span>
         </button>
       </div>
     </form>

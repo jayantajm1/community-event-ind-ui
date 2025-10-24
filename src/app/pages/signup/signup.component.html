@@ -1,85 +1,171 @@
-<div class="auth-container">
-  <div class="auth-card">
-    <div class="auth-header">
-      <h1>Create Account</h1>
-      <p>Join the Community Events Platform</p>
+<div class="signup-container">
+  <!-- Left Side - Branding -->
+  <div class="branding-section">
+    <div class="branding-content">
+      <div class="brand-icon">🎉</div>
+      <h1 class="brand-title">Welcome to Community Events</h1>
+      <p class="brand-subtitle">
+        Join thousands of people discovering and creating amazing community
+        events
+      </p>
+
+      <div class="features-list">
+        <div class="feature-item">
+          <span class="feature-icon">✨</span>
+          <div class="feature-text">
+            <h3>Discover Events</h3>
+            <p>Find exciting events in your community</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🤝</span>
+          <div class="feature-text">
+            <h3>Connect People</h3>
+            <p>Meet like-minded individuals</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🚀</span>
+          <div class="feature-text">
+            <h3>Create Events</h3>
+            <p>Organize your own community gatherings</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="alert alert-error" *ngIf="error">
-      {{ error }}
-    </div>
-
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="fullName">Full Name *</label>
-        <input
-          type="text"
-          id="fullName"
-          [(ngModel)]="fullName"
-          name="fullName"
-          placeholder="Enter your full name"
-          required
-        />
+  <!-- Right Side - Signup Form -->
+  <div class="form-section">
+    <div class="form-container">
+      <div class="form-header">
+        <h2>Create Account</h2>
+        <p>Join the Community Events Platform</p>
       </div>
 
-      <div class="form-group">
-        <label for="email">Email Address *</label>
-        <input
-          type="email"
-          id="email"
-          [(ngModel)]="email"
-          name="email"
-          placeholder="Enter your email"
-          required
-        />
+      <div class="alert-error" *ngIf="error">
+        <span class="alert-icon">⚠️</span>
+        <span>{{ error }}</span>
       </div>
 
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          [(ngModel)]="username"
-          name="username"
-          placeholder="Choose a username (optional)"
-        />
+      <form (ngSubmit)="onSubmit()" class="signup-form">
+        <div class="form-group">
+          <label for="fullName">
+            <span class="label-icon">👤</span>
+            Full Name *
+          </label>
+          <input
+            type="text"
+            id="fullName"
+            [(ngModel)]="fullName"
+            name="fullName"
+            placeholder="Enter your full name"
+            required
+            class="form-input"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">
+            <span class="label-icon">📧</span>
+            Email Address *
+          </label>
+          <input
+            type="email"
+            id="email"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            class="form-input"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="username">
+            <span class="label-icon">@</span>
+            Username
+          </label>
+          <input
+            type="text"
+            id="username"
+            [(ngModel)]="username"
+            name="username"
+            placeholder="Choose a username (optional)"
+            class="form-input"
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="password">
+              <span class="label-icon">🔒</span>
+              Password *
+            </label>
+            <input
+              type="password"
+              id="password"
+              [(ngModel)]="password"
+              name="password"
+              placeholder="Create a password (min 6 characters)"
+              required
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">
+              <span class="label-icon">🔑</span>
+              Confirm Password *
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              [(ngModel)]="confirmPassword"
+              name="confirmPassword"
+              placeholder="Confirm your password"
+              required
+              class="form-input"
+            />
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="loading">
+          <span class="btn-content" *ngIf="!loading">
+            <span class="btn-icon">🎊</span>
+            <span>Sign Up</span>
+            <span class="btn-arrow">→</span>
+          </span>
+          <span class="btn-loading" *ngIf="loading">
+            <span class="spinner"></span>
+            Creating Account...
+          </span>
+        </button>
+      </form>
+
+      <div class="form-footer">
+        <p>
+          Already have an account?
+          <a routerLink="/login" class="login-link"
+            >Login <span class="link-arrow">→</span></a
+          >
+        </p>
       </div>
 
-      <div class="form-group">
-        <label for="password">Password *</label>
-        <input
-          type="password"
-          id="password"
-          [(ngModel)]="password"
-          name="password"
-          placeholder="Create a password (min 6 characters)"
-          required
-        />
+      <div class="divider">
+        <span>or continue with</span>
       </div>
 
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password *</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          [(ngModel)]="confirmPassword"
-          name="confirmPassword"
-          placeholder="Confirm your password"
-          required
-        />
+      <div class="social-buttons">
+        <button type="button" class="social-btn google">
+          <span class="social-icon">G</span>
+          Google
+        </button>
+        <button type="button" class="social-btn github">
+          <span class="social-icon">⚡</span>
+          GitHub
+        </button>
       </div>
-
-      <button
-        type="submit"
-        class="btn btn-primary btn-block"
-        [disabled]="loading"
-      >
-        {{ loading ? "Creating Account..." : "Sign Up" }}
-      </button>
-    </form>
-
-    <div class="auth-footer">
-      <p>Already have an account? <a routerLink="/login">Login</a></p>
     </div>
   </div>
 </div>

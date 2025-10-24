@@ -142,12 +142,14 @@
     </div>
 
     <div class="events-grid" *ngIf="events.length > 0">
-      <div class="event-card" *ngFor="let event of events.slice(0, 6)">
+      <div
+        class="event-card"
+        *ngFor="let event of events.slice(0, 6)"
+        [routerLink]="['/events', event.id]"
+      >
         <div class="event-icon">{{ getEventIcon(event.title) }}</div>
         <div class="event-content">
-          <h3 class="event-title">
-            <a [routerLink]="['/events', event.id]">{{ event.title }}</a>
-          </h3>
+          <h3 class="event-title">{{ event.title }}</h3>
           <p class="event-description">{{ event.description }}</p>
           <div class="event-meta">
             <span class="event-date">
@@ -164,9 +166,7 @@
             </span>
           </div>
         </div>
-        <a [routerLink]="['/events', event.id]" class="event-action">
-          View Details →
-        </a>
+        <span class="event-action"> View Details → </span>
       </div>
     </div>
 

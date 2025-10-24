@@ -385,6 +385,7 @@
   border: 2px solid var(--border-color);
   transition: all var(--transition-base);
   animation: fadeIn 0.5s ease-out both;
+  cursor: pointer;
 }
 
 @keyframes fadeIn {
@@ -418,15 +419,11 @@
   font-size: var(--font-size-xl);
   font-weight: 700;
   margin: 0 0 var(--spacing-md);
-}
-
-.event-title a {
   color: #2d2d2d;
-  text-decoration: none;
   transition: color var(--transition-base);
 }
 
-.event-title a:hover {
+.event-card:hover .event-title {
   color: var(--primary-color);
 }
 
@@ -469,16 +466,14 @@
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   color: white;
   border-radius: var(--radius-full);
-  text-decoration: none;
   font-weight: 700;
   font-size: var(--font-size-sm);
   transition: all var(--transition-base);
 }
 
-.event-action:hover {
+.event-card:hover .event-action {
   transform: translateX(4px);
   box-shadow: var(--shadow-md);
-  text-decoration: none;
 }
 
 /* Empty State */

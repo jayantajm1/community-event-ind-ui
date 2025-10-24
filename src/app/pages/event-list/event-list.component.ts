@@ -10,7 +10,9 @@ import { EventService } from '../../services/event.service';
 export class EventListComponent implements OnInit {
   events: Event[] = [];
   query = '';
+
   constructor(private eventService: EventService) {}
+
   ngOnInit(): void {
     this.load();
   }
@@ -21,5 +23,23 @@ export class EventListComponent implements OnInit {
     } else {
       this.eventService.list().subscribe((e) => (this.events = e));
     }
+  }
+
+  getEventIcon(index: number): string {
+    const icons = [
+      '🎭',
+      '🎪',
+      '🎨',
+      '🎵',
+      '🎬',
+      '🎮',
+      '⚽',
+      '🏀',
+      '🎯',
+      '🎲',
+      '🎸',
+      '🎤',
+    ];
+    return icons[index % icons.length];
   }
 }

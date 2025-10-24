@@ -1,17 +1,116 @@
-<section class="events-list">
-  <h1>Events</h1>
-  <div class="search">
-    <input [(ngModel)]="query" placeholder="Search events" />
-    <button (click)="load()">Search</button>
+<div class="events-container">
+  <!-- Hero Header -->
+  <div class="hero-header">
+    <div class="hero-content">
+      <div class="header-text">
+        <div class="title-wrapper">
+          <span class="title-icon">🎉</span>
+          <h1 class="page-title">Events</h1>
+        </div>
+        <p class="page-subtitle">
+          Discover amazing events happening in your community
+        </p>
+      </div>
+      <button class="create-btn" routerLink="/events/create">
+        <span class="btn-icon">✨</span>
+        <span class="btn-text">Create Event</span>
+        <span class="btn-arrow">→</span>
+      </button>
+    </div>
   </div>
 
-  <div class="cards">
-    <article *ngFor="let e of events" class="card">
-      <h3>
-        <a [routerLink]="['/events', e.id]">{{ e.title }}</a>
-      </h3>
-      <p>{{ e.description }}</p>
-      <small>{{ e.startDatetime | date : "short" }}</small>
-    </article>
+  <!-- Search Section -->
+  <div class="search-section">
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input
+        class="search-input"
+        [(ngModel)]="query"
+        (keyup.enter)="load()"
+        placeholder="Search for events..."
+      />
+      <div class="search-decoration"></div>
+    </div>
+    <button class="search-btn" (click)="load()">
+      <span class="search-btn-icon">🔎</span>
+      Search
+    </button>
   </div>
-</section>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar" *ngIf="events.length > 0">
+    <div class="stat-item">
+      <span class="stat-icon">📅</span>
+      <div class="stat-content">
+        <span class="stat-value">{{ events.length }}</span>
+        <span class="stat-label">Events Found</span>
+      </div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-icon">⭐</span>
+      <div class="stat-content">
+        <span class="stat-value">Live</span>
+        <span class="stat-label">Happening Now</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Events Grid -->
+  <div class="events-grid" *ngIf="events.length > 0">
+    <div
+      class="event-card"
+      *ngFor="let e of events; let i = index"
+      [style.animation-delay.s]="i * 0.1"
+    >
+      <div class="card-overlay"></div>
+
+      <div class="card-header">
+        <div class="event-icon">
+          <span class="icon-emoji">{{ getEventIcon(i) }}</span>
+        </div>
+        <div class="event-badge">
+          <span class="badge-icon">🎯</span>
+          <span class="badge-text">Active</span>
+        </div>
+      </div>
+
+      <div class="card-content">
+        <h3 class="event-title">
+          <a [routerLink]="['/events', e.id]">{{ e.title }}</a>
+        </h3>
+        <p class="event-description">{{ e.description }}</p>
+      </div>
+
+      <div class="card-footer">
+        <div class="event-datetime">
+          <span class="datetime-icon">🕒</span>
+          <span class="datetime-text">{{
+            e.startDatetime | date : "MMM d, y • h:mm a"
+          }}</span>
+        </div>
+        <div class="view-details">
+          <span class="details-text">View Details</span>
+          <span class="details-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="events.length === 0">
+    <div class="empty-content">
+      <div class="empty-icon">📭</div>
+      <h3 class="empty-title">No Events Found</h3>
+      <p class="empty-text">
+        We couldn't find any events matching your search. Try adjusting your
+        filters or create a new event!
+      </p>
+      <button class="create-btn-secondary" routerLink="/events/create">
+        <span class="btn-icon">🎊</span>
+        <span>Create Your First Event</span>
+        <span class="btn-arrow">→</span>
+      </button>
+    </div>
+  </div>
+</div>

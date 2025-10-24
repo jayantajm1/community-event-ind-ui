@@ -1,9 +1,15 @@
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
+}
+
 .home-hero {
   background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
   color: var(--text-white);
-  padding: var(--spacing-2xl) var(--spacing-lg);
+  padding: var(--spacing-xl) var(--spacing-lg);
   border-radius: var(--radius-xl);
-  margin: var(--spacing-lg) 0;
+  margin: 0 0 var(--spacing-lg) 0;
   text-align: center;
   box-shadow: var(--shadow-lg);
 }

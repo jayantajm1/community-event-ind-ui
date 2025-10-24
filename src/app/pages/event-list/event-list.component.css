@@ -1,6 +1,7 @@
 .events-list {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
 }
 
 .events-list h1 {

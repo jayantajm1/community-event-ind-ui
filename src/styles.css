@@ -451,3 +451,11 @@ textarea {
     border: 1px solid #ddd;
   }
 }
+
+/* ===========================
+   Page Layout Fix - Remove Extra Top Space
+   =========================== */
+router-outlet + * {
+  display: block;
+}
+

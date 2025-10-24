@@ -1,45 +1,83 @@
 <div class="admin-container">
-  <h1>Admin Dashboard</h1>
+  <!-- Hero Header -->
+  <div class="admin-hero">
+    <div class="hero-content">
+      <div class="hero-icon">👑</div>
+      <h1 class="hero-title">Admin Dashboard</h1>
+      <p class="hero-subtitle">Manage your community events platform</p>
+    </div>
+    <div class="hero-decoration"></div>
+  </div>
 
+  <!-- Alerts -->
   <div class="alert alert-success" *ngIf="success">
-    {{ success }}
+    <span class="alert-icon">✅</span>
+    <span>{{ success }}</span>
+    <button class="alert-close" (click)="success = ''">×</button>
   </div>
 
   <div class="alert alert-error" *ngIf="error">
-    {{ error }}
+    <span class="alert-icon">❌</span>
+    <span>{{ error }}</span>
+    <button class="alert-close" (click)="error = ''">×</button>
   </div>
 
   <!-- Stats Cards -->
   <div class="stats-grid" *ngIf="stats">
-    <div class="stat-card">
-      <h3>Total Users</h3>
-      <p class="stat-value">{{ stats.totalUsers }}</p>
+    <div class="stat-card stat-card-users">
+      <div class="stat-icon">👥</div>
+      <div class="stat-info">
+        <h3>Total Users</h3>
+        <p class="stat-value">{{ stats.totalUsers }}</p>
+      </div>
     </div>
-    <div class="stat-card">
-      <h3>Total Events</h3>
-      <p class="stat-value">{{ stats.totalEvents }}</p>
+
+    <div class="stat-card stat-card-events">
+      <div class="stat-icon">🎉</div>
+      <div class="stat-info">
+        <h3>Total Events</h3>
+        <p class="stat-value">{{ stats.totalEvents }}</p>
+      </div>
     </div>
-    <div class="stat-card">
-      <h3>Communities</h3>
-      <p class="stat-value">{{ stats.totalCommunities }}</p>
+
+    <div class="stat-card stat-card-communities">
+      <div class="stat-icon">🏘️</div>
+      <div class="stat-info">
+        <h3>Communities</h3>
+        <p class="stat-value">{{ stats.totalCommunities }}</p>
+      </div>
     </div>
-    <div class="stat-card">
-      <h3>Pending Reports</h3>
-      <p class="stat-value text-warning">{{ stats.pendingReports }}</p>
+
+    <div class="stat-card stat-card-warning">
+      <div class="stat-icon">⚠️</div>
+      <div class="stat-info">
+        <h3>Pending Reports</h3>
+        <p class="stat-value">{{ stats.pendingReports }}</p>
+      </div>
     </div>
-    <div class="stat-card">
-      <h3>Active Events</h3>
-      <p class="stat-value">{{ stats.activeEvents }}</p>
+
+    <div class="stat-card stat-card-active">
+      <div class="stat-icon">🎫</div>
+      <div class="stat-info">
+        <h3>Active Events</h3>
+        <p class="stat-value">{{ stats.activeEvents }}</p>
+      </div>
     </div>
-    <div class="stat-card">
-      <h3>Banned Users</h3>
-      <p class="stat-value text-error">{{ stats.bannedUsers }}</p>
+
+    <div class="stat-card stat-card-banned">
+      <div class="stat-icon">🚫</div>
+      <div class="stat-info">
+        <h3>Banned Users</h3>
+        <p class="stat-value">{{ stats.bannedUsers }}</p>
+      </div>
     </div>
   </div>
 
   <!-- Event Reports -->
   <div class="card">
-    <h2>Event Reports</h2>
+    <div class="card-header">
+      <h2><span class="header-icon">📋</span> Event Reports</h2>
+    </div>
     <div class="table-container">
       <table *ngIf="eventReports.length > 0">
         <thead>
@@ -54,9 +92,21 @@
         </thead>
         <tbody>
           <tr *ngFor="let report of eventReports">
-            <td>{{ report.eventTitle }}</td>
-            <td>{{ report.reportedBy }}</td>
-            <td>{{ report.reason }}</td>
+            <td>
+              <div class="table-cell-content">
+                <span class="cell-icon">🎉</span>
+                <span class="cell-text">{{ report.eventTitle }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="table-cell-content">
+                <span class="cell-icon">👤</span>
+                <span class="cell-text">{{ report.reportedBy }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="reason-cell">{{ report.reason }}</div>
+            </td>
             <td>
               <span
                 class="badge"
@@ -69,36 +119,51 @@
                 {{ report.status }}
               </span>
             </td>
-            <td>{{ report.createdAt | date : "short" }}</td>
+            <td>
+              <div class="table-cell-content">
+                <span class="cell-icon">📅</span>
+                <span class="cell-text">{{
+                  report.createdAt | date : "short"
+                }}</span>
+              </div>
+            </td>
             <td>
               <div class="action-buttons" *ngIf="report.status === 'pending'">
                 <button
-                  class="btn btn-success btn-sm"
+                  class="btn btn-resolve"
                   (click)="resolveEventReport(report.id)"
+                  title="Resolve"
                 >
-                  Resolve
+                  ✓ Resolve
                 </button>
                 <button
-                  class="btn btn-secondary btn-sm"
+                  class="btn btn-reject"
                   (click)="rejectEventReport(report.id)"
+                  title="Reject"
                 >
-                  Reject
+                  ✕ Reject
                 </button>
               </div>
-              <span *ngIf="report.status !== 'pending'">-</span>
+              <span class="no-action" *ngIf="report.status !== 'pending'"
+                >—</span
+              >
             </td>
           </tr>
         </tbody>
       </table>
-      <p class="text-secondary" *ngIf="eventReports.length === 0">
-        No event reports found.
-      </p>
+      <div class="empty-state" *ngIf="eventReports.length === 0">
+        <div class="empty-icon">📭</div>
+        <p class="empty-text">No event reports found</p>
+        <p class="empty-subtext">All clear! You're doing great.</p>
+      </div>
     </div>
   </div>
 
   <!-- User Reports -->
   <div class="card">
-    <h2>User Reports</h2>
+    <div class="card-header">
+      <h2><span class="header-icon">👥</span> User Reports</h2>
+    </div>
     <div class="table-container">
       <table *ngIf="userReports.length > 0">
         <thead>
@@ -113,9 +178,21 @@
         </thead>
         <tbody>
           <tr *ngFor="let report of userReports">
-            <td>{{ report.userName }}</td>
-            <td>{{ report.reportedBy }}</td>
-            <td>{{ report.reason }}</td>
+            <td>
+              <div class="table-cell-content">
+                <span class="cell-icon">👤</span>
+                <span class="cell-text">{{ report.userName }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="table-cell-content">
+                <span class="cell-icon">🔍</span>
+                <span class="cell-text">{{ report.reportedBy }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="reason-cell">{{ report.reason }}</div>
+            </td>
             <td>
               <span
                 class="badge"
@@ -128,36 +205,50 @@
                 {{ report.status }}
               </span>
             </td>
-            <td>{{ report.createdAt | date : "short" }}</td>
+            <td>
+              <div class="table-cell-content">
+                <span class="cell-icon">📅</span>
+                <span class="cell-text">{{
+                  report.createdAt | date : "short"
+                }}</span>
+              </div>
+            </td>
             <td>
               <div class="action-buttons" *ngIf="report.status === 'pending'">
                 <button
-                  class="btn btn-success btn-sm"
+                  class="btn btn-resolve"
                   (click)="resolveUserReport(report.id)"
+                  title="Resolve"
                 >
-                  Resolve
+                  ✓ Resolve
                 </button>
                 <button
-                  class="btn btn-secondary btn-sm"
+                  class="btn btn-reject"
                   (click)="rejectUserReport(report.id)"
+                  title="Reject"
                 >
-                  Reject
+                  ✕ Reject
                 </button>
                 <button
-                  class="btn btn-error btn-sm"
+                  class="btn btn-ban"
                   (click)="banUser(report.userId)"
+                  title="Ban User"
                 >
-                  Ban User
+                  🚫 Ban
                 </button>
               </div>
-              <span *ngIf="report.status !== 'pending'">-</span>
+              <span class="no-action" *ngIf="report.status !== 'pending'"
+                >—</span
+              >
             </td>
           </tr>
         </tbody>
       </table>
-      <p class="text-secondary" *ngIf="userReports.length === 0">
-        No user reports found.
-      </p>
+      <div class="empty-state" *ngIf="userReports.length === 0">
+        <div class="empty-icon">📭</div>
+        <p class="empty-text">No user reports found</p>
+        <p class="empty-subtext">All clear! You're doing great.</p>
+      </div>
     </div>
   </div>
 </div>

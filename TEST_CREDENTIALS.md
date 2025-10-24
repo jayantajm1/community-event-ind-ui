@@ -20,8 +20,8 @@ This file contains test credentials you can use to login and test the applicatio
 - **Communities:** Admin in "Fitness Enthusiasts", Member in "Neighborhood Meetups"
 - **Events:** Organizer of 1 event, Attendee of 2 events
 
-### 3. Anjali Verma (Administrator)
-- **Email:** `anjali@example.com`
+### 3. Jayanta Mardi (Administrator)
+- **Email:** `jayanta@example.com`
 - **Password:** `admin123`
 - **Role:** Admin
 - **Profile:** Platform administrator

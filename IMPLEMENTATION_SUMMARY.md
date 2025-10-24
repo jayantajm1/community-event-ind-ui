@@ -9,7 +9,7 @@ Added comprehensive test data including:
 - **5 Test Users** with different roles:
   - Priya Sharma (Host)
   - Ravi Kumar (Member)  
-  - Anjali Verma (Admin)
+  - Jayanta Mardi (Admin)
   - Arjun Patel (Moderator)
   - Neha Singh (Member)
 
@@ -92,8 +92,8 @@ Created comprehensive docs:
 - Password: `password123`
 - See: 3 events (mix of organizer/attendee), 2 communities
 
-**Try Anjali (Admin):**
-- Email: `anjali@example.com`
+**Try Jayanta (Admin):**
+- Email: `jayanta@example.com`
 - Password: `admin123`
 - See: 1 event, 3 communities (all admin roles)
 

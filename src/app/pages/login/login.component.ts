@@ -23,7 +23,7 @@ export class LoginComponent {
   testCredentials: TestCredential[] = [
     { email: 'priya@example.com', password: 'password123', role: '👑 Host' },
     { email: 'ravi@example.com', password: 'password123', role: '👤 Member' },
-    { email: 'anjali@example.com', password: 'admin123', role: '⚡ Admin' },
+    { email: 'jayanta@example.com', password: 'admin123', role: '⚡ Admin' },
     {
       email: 'arjun@example.com',
       password: 'password123',

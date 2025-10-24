@@ -23,9 +23,9 @@ export const MOCK_USERS: User[] = [
   },
   {
     id: 'u3',
-    fullName: 'Anjali Verma',
-    email: 'anjali@example.com',
-    username: 'anjali',
+    fullName: 'Jayanta Mardi',
+    email: 'jayanta@example.com',
+    username: 'jayanta',
     role: 'admin',
     bio: 'Platform administrator. Ensuring smooth experiences for all community members.',
   },
@@ -51,7 +51,7 @@ export const MOCK_USERS: User[] = [
 export const TEST_CREDENTIALS = [
   { email: 'priya@example.com', password: 'password123' },
   { email: 'ravi@example.com', password: 'password123' },
-  { email: 'anjali@example.com', password: 'admin123' },
+  { email: 'jayanta@example.com', password: 'admin123' },
   { email: 'arjun@example.com', password: 'password123' },
   { email: 'neha@example.com', password: 'password123' },
   { email: 'demo@example.com', password: 'demo123' }, // Generic demo account

@@ -1,0 +1,55 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Help Center</h1>
+    <p>Find answers to common questions and get the help you need</p>
+  </div>
+
+  <div class="help-content">
+    <div class="search-section">
+      <h2>How can we help you?</h2>
+      <div class="search-box">
+        <input type="text" placeholder="Search for help..." />
+        <button class="btn btn-primary">Search</button>
+      </div>
+    </div>
+
+    <div class="help-categories">
+      <div class="category-card">
+        <div class="category-icon">🎫</div>
+        <h3>Events</h3>
+        <p>Learn how to create, manage, and participate in events</p>
+      </div>
+      <div class="category-card">
+        <div class="category-icon">👥</div>
+        <h3>Communities</h3>
+        <p>Discover how to join and create communities</p>
+      </div>
+      <div class="category-card">
+        <div class="category-icon">👤</div>
+        <h3>Account</h3>
+        <p>Manage your profile and account settings</p>
+      </div>
+      <div class="category-card">
+        <div class="category-icon">🔒</div>
+        <h3>Privacy & Security</h3>
+        <p>Learn about data protection and privacy</p>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item" *ngFor="let faq of faqs">
+          <h4>{{ faq.question }}</h4>
+          <p>{{ faq.answer }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-support">
+      <h2>Still need help?</h2>
+      <p>Our support team is here to assist you</p>
+      <a routerLink="/contact" class="btn btn-primary">Contact Support</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Frequently Asked Questions</h1>
+    <p>Find quick answers to common questions</p>
+  </div>
+
+  <div class="faq-content">
+    <div class="category" *ngFor="let category of categories">
+      <h2>{{ category.name }}</h2>
+      <div class="faq-list">
+        <div class="faq-item" *ngFor="let item of category.questions">
+          <h3>{{ item.q }}</h3>
+          <p>{{ item.a }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

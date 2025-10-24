@@ -23,6 +23,15 @@ import { EventCreateComponent } from './pages/event-create/event-create.componen
 import { EventEditComponent } from './pages/event-edit/event-edit.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { HelpCenterComponent } from './pages/help-center/help-center.component';
+import { FaqsComponent } from './pages/faqs/faqs.component';
+import { BlogComponent } from './pages/blog/blog.component';
+import { GuidelinesComponent } from './pages/guidelines/guidelines.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { CareersComponent } from './pages/careers/careers.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { TermsOfServiceComponent } from './pages/terms-of-service/terms-of-service.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +53,15 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
     EventEditComponent,
     CommentListComponent,
     AdminDashboardComponent,
+    HelpCenterComponent,
+    FaqsComponent,
+    BlogComponent,
+    GuidelinesComponent,
+    AboutUsComponent,
+    ContactComponent,
+    CareersComponent,
+    PrivacyPolicyComponent,
+    TermsOfServiceComponent,
   ],
   imports: [
     BrowserModule,

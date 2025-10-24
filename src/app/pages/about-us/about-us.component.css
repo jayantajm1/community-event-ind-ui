@@ -1,0 +1,141 @@
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg) var(--spacing-2xl);
+}
+
+.hero-section {
+  text-align: center;
+  padding: var(--spacing-2xl) 0;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+  color: white;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.tagline {
+  font-size: var(--font-size-xl);
+  opacity: 0.95;
+}
+
+.mission-section {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--spacing-2xl);
+  padding: var(--spacing-xl);
+}
+
+.mission-section h2 {
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-lg);
+}
+
+.mission-section p {
+  font-size: var(--font-size-lg);
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.stat-card {
+  background: white;
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.stat-card p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+}
+
+.team-section {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.team-section h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-xl);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.team-member {
+  background: white;
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  transition: transform var(--transition-base);
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+}
+
+.member-icon {
+  font-size: 4rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.team-member h3 {
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.team-member p {
+  color: var(--text-secondary);
+}
+
+.values-section h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-xl);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.value-card {
+  background: white;
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.value-card h3 {
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-xl);
+}
+
+.value-card p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}

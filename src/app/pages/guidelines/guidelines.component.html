@@ -1,0 +1,25 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Community Guidelines</h1>
+    <p>Our standards for maintaining a safe and welcoming environment</p>
+  </div>
+
+  <div class="guidelines-grid">
+    <div class="guideline-section" *ngFor="let section of guidelines">
+      <div class="section-icon">{{ section.icon }}</div>
+      <h2>{{ section.title }}</h2>
+      <ul class="rules-list">
+        <li *ngFor="let rule of section.rules">{{ rule }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="enforcement">
+    <h2>Enforcement</h2>
+    <p>
+      Violations of these guidelines may result in warnings, content removal, or
+      account suspension. We reserve the right to take appropriate action to
+      maintain a positive community environment.
+    </p>
+  </div>
+</div>

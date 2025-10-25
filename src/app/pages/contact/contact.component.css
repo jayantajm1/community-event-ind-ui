@@ -11,6 +11,22 @@
   margin-bottom: var(--spacing-2xl);
 }
 
+.page-header h1 {
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-md);
+}
+
+.page-header p {
+  color: white;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
 .contact-content {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -37,8 +53,12 @@
 }
 
 .info-card h3 {
-  color: var(--primary-color);
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: var(--spacing-sm);
+  font-weight: 800;
 }
 
 .info-card p {

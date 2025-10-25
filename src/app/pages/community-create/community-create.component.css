@@ -39,7 +39,7 @@
   font-size: 3rem;
   font-weight: 800;
   margin: 0 0 var(--spacing-sm);
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -47,9 +47,9 @@
 
 .hero-subtitle {
   font-size: var(--font-size-xl);
-  color: var(--text-secondary);
+  color: white;
   margin: 0;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Form Card */

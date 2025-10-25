@@ -11,6 +11,22 @@
   margin-bottom: var(--spacing-2xl);
 }
 
+.page-header h1 {
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-md);
+}
+
+.page-header p {
+  color: white;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
 .category {
   margin-bottom: var(--spacing-2xl);
 }
@@ -41,12 +57,14 @@
 }
 
 .faq-item h3 {
-  color: var(--text-primary);
+  color: #1a1a1a;
   font-size: var(--font-size-lg);
   margin-bottom: var(--spacing-md);
+  font-weight: 700;
 }
 
 .faq-item p {
-  color: var(--text-secondary);
+  color: #2d2d2d;
   line-height: 1.6;
+  font-weight: 500;
 }

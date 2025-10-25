@@ -113,9 +113,12 @@ export class AuthService {
   logout(): Observable<void> {
     // Mock logout - replace with real HTTP call
     return of(void 0).pipe(
+      delay(100),
       tap(() => {
         this.clearTokens();
         this.currentUserSubject.next(null);
+        // Clear any session storage as well
+        sessionStorage.clear();
       })
     );
   }

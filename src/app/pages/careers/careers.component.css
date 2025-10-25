@@ -63,12 +63,16 @@
 }
 
 .benefit-card h3 {
-  color: var(--text-primary);
+  color: #1a1a1a;
   margin-bottom: var(--spacing-sm);
+  font-weight: 700;
+  font-size: 1.25rem;
 }
 
 .benefit-card p {
-  color: var(--text-secondary);
+  color: #2d2d2d;
+  font-weight: 500;
+  line-height: 1.6;
 }
 
 .positions-section h2 {
@@ -103,8 +107,9 @@
 }
 
 .position-header h3 {
-  color: var(--text-primary);
+  color: #1a1a1a;
   font-size: var(--font-size-xl);
+  font-weight: 700;
 }
 
 .position-type {
@@ -120,7 +125,8 @@
   display: flex;
   gap: var(--spacing-lg);
   margin-bottom: var(--spacing-md);
-  color: var(--text-secondary);
+  color: #4b5563;
+  font-weight: 500;
 }
 
 .department {
@@ -128,9 +134,10 @@
 }
 
 .position-card p {
-  color: var(--text-secondary);
+  color: #2d2d2d;
   line-height: 1.6;
   margin-bottom: var(--spacing-lg);
+  font-weight: 500;
 }
 
 .apply-btn {

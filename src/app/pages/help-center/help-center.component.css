@@ -25,6 +25,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-2xl);
+  color: darkviolet;
 }
 
 .search-section {
@@ -34,6 +35,12 @@
 
 .search-section h2 {
   margin-bottom: var(--spacing-lg);
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.5rem;
+  font-weight: 800;
 }
 
 .search-box {
@@ -97,6 +104,7 @@
 .faq-section h2 {
   margin-bottom: var(--spacing-xl);
   text-align: center;
+
 }
 
 .faq-list {

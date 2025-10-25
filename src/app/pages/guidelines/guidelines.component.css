@@ -11,6 +11,22 @@
   margin-bottom: var(--spacing-2xl);
 }
 
+.page-header h1 {
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-md);
+}
+
+.page-header p {
+  color: #2d2d2d;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
 .guidelines-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -32,9 +48,11 @@
 }
 
 .guideline-section h2 {
-  color: var(--primary-color);
+  color: #1a73e8;
   text-align: center;
   margin-bottom: var(--spacing-lg);
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .rules-list {
@@ -45,9 +63,12 @@
 .rules-list li {
   padding: var(--spacing-md);
   margin-bottom: var(--spacing-sm);
-  background: var(--background-color);
+  background: #1e293b;
   border-radius: var(--radius-md);
   border-left: 3px solid var(--primary-color);
+  color: #e2e8f0;
+  font-weight: 500;
+  font-size: var(--font-size-base);
 }
 
 .enforcement {

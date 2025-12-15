@@ -45,11 +45,11 @@ const routes: Routes = [
   { path: 'careers', component: CareersComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'terms-of-service', component: TermsOfServiceComponent },
-  { path: '**', redirectTo: '/events' },
+  { path: '**', redirectTo: '/home' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: false })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
